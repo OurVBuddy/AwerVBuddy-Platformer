@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs2rs1g3l8ryo"]
+
+[ext_resource type="Texture2D" uid="uid://qu1x5sfxq521" path="res://Images/Floors/Grass.png" id="2_3hjjc"]
+[ext_resource type="PackedScene" uid="uid://itk2lcq1jv86" path="res://Nodes/character.tscn" id="2_8niok"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0g8a"]
+texture = ExtResource("2_3hjjc")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.75, 8, -5.625, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_ym0nx"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_g0g8a")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Character" parent="." instance=ExtResource("2_8niok")]
+
+[node name="Map" type="Node" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Map"]
+tile_set = SubResource("TileSet_ym0nx")
+rendering_quadrant_size = 1
+format = 2
+layer_0/z_index = -1
+layer_0/tile_data = PackedInt32Array(-131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -131074, 0, 0, -131075, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196603, 0, 0, -196602, 0, 0, -196601, 0, 0, -131076, 0, 0, -131077, 0, 0, -131078, 0, 0, -131079, 0, 0, -131080, 0, 0, -262151, 0, 0, -262150, 0, 0, -262149, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -458745, 0, 0, -458744, 0, 0, -458743, 0, 0, -393224, 0, 0, -393225, 0, 0, -393226, 0, 0, -524299, 0, 0, -524300, 0, 0, -524301, 0, 0, -589814, 0, 0, -589813, 0, 0, -589812, 0, 0, -393218, 0, 0, -458751, 0, 0, -458752, 0, 0, -393217, 0, 0, -589829, 0, 0, -589828, 0, 0, -655357, 0, 0, -655356, 0, 0, -720898, 0, 0, -720897, 0, 0, -786432, 0, 0, -786431, 0, 0)

@@ -1,0 +1,166 @@
+[gd_scene load_steps=16 format=3 uid="uid://itk2lcq1jv86"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterMovement.gd" id="1_ximf5"]
+[ext_resource type="Texture2D" uid="uid://ber0b8q16itle" path="res://Images/AwerVBuddy/Idle/IdleInvert01.png" id="2_bttpk"]
+[ext_resource type="Texture2D" uid="uid://4v14etrqv7iu" path="res://Images/AwerVBuddy/Idle/IdleInvert02.png" id="3_ikdt8"]
+[ext_resource type="Texture2D" uid="uid://c3n234rs0n8qr" path="res://Images/AwerVBuddy/Idle/Idle01.png" id="4_curca"]
+[ext_resource type="Texture2D" uid="uid://cqw6vrcrvuqvo" path="res://Images/AwerVBuddy/Idle/Idle02.png" id="5_7e753"]
+[ext_resource type="Texture2D" uid="uid://jnpg2nijw5hs" path="res://Images/AwerVBuddy/walk/walkinvert01.png" id="6_ds7tw"]
+[ext_resource type="Texture2D" uid="uid://b6oqcjyk0b42o" path="res://Images/AwerVBuddy/fall/fallinverted01.png" id="6_ug0mu"]
+[ext_resource type="Texture2D" uid="uid://d0dxxopgguy7d" path="res://Images/AwerVBuddy/walk/walkinvert02.png" id="7_3ehfl"]
+[ext_resource type="Texture2D" uid="uid://sqxyljkd8crj" path="res://Images/AwerVBuddy/fall/fallinverted02.png" id="7_ku1o8"]
+[ext_resource type="Texture2D" uid="uid://olaope41xld2" path="res://Images/AwerVBuddy/walk/walk01.png" id="8_mx8w4"]
+[ext_resource type="Texture2D" uid="uid://5bejdpovex08" path="res://Images/AwerVBuddy/walk/walk02.png" id="9_23gyg"]
+[ext_resource type="Texture2D" uid="uid://n3iutr2s7dog" path="res://Images/AwerVBuddy/fall/fall01.png" id="10_ift7u"]
+[ext_resource type="Texture2D" uid="uid://2ftjyu3e7ufq" path="res://Images/AwerVBuddy/fall/fall02.png" id="11_8yprp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkpei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bttpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ikdt8")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_curca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7e753")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ug0mu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ku1o8")
+}],
+"loop": true,
+"name": &"left_fall",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ds7tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3ehfl")
+}],
+"loop": true,
+"name": &"left_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ds7tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3ehfl")
+}],
+"loop": true,
+"name": &"left_walk",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ift7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8yprp")
+}],
+"loop": true,
+"name": &"right_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_mx8w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_23gyg")
+}],
+"loop": true,
+"name": &"right_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_mx8w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_23gyg")
+}],
+"loop": true,
+"name": &"right_walk",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgeek"]
+size = Vector2(11, 14)
+
+[node name="Character" type="CharacterBody2D"]
+position = Vector2(0, -64)
+script = ExtResource("1_ximf5")
+
+[node name="GroundParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 8)
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+fract_delta = false
+emission_shape = 1
+emission_sphere_radius = 3.4
+direction = Vector2(0, -1)
+spread = 23.7
+gravity = Vector2(0, 250)
+initial_velocity_min = 43.75
+initial_velocity_max = 43.75
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(6.58678e-07, -8.10623e-06)
+sprite_frames = SubResource("SpriteFrames_kkpei")
+animation = &"right_fall"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_sgeek")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="WalkingLeft" type="CPUParticles2D" parent="."]
+position = Vector2(0, 8)
+emitting = false
+amount = 2
+lifetime = 0.35
+explosiveness = 1.0
+lifetime_randomness = 1.0
+spread = 4.49
+gravity = Vector2(0, 20)
+initial_velocity_min = 25.0
+initial_velocity_max = 120.8
+
+[node name="WalkingRight" type="CPUParticles2D" parent="."]
+position = Vector2(0, 8)
+emitting = false
+amount = 2
+lifetime = 0.35
+explosiveness = 1.0
+lifetime_randomness = 1.0
+direction = Vector2(-1, 0)
+spread = 4.49
+gravity = Vector2(0, 20)
+initial_velocity_min = 25.0
+initial_velocity_max = 120.8
